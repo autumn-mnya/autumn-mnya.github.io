@@ -1,0 +1,11 @@
+[
+null,
+{"id":1,"atypeId":5,"description":"","etypeId":2,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":128,"name":"Shield","note":"","params":[0,0,0,2,0,0,0,0],"price":20},
+{"id":2,"atypeId":1,"description":"A nice lil hat! Increases Evasion Rate by 20%.","etypeId":3,"traits":[{"code":22,"dataId":1,"value":0.2}],"iconIndex":130,"name":"Critter Hat","note":"","params":[0,0,0,1,0,0,0,0],"price":20},
+{"id":3,"atypeId":1,"description":"A simple cloth. Adds 2 defense.","etypeId":4,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":135,"name":"Cloth","note":"","params":[0,0,0,2,0,0,0,0],"price":20},
+{"id":4,"atypeId":1,"description":"","etypeId":5,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":145,"name":"Ring","note":"","params":[0,0,0,0,10,0,0,0],"price":300},
+{"id":5,"atypeId":2,"description":"A witch's hat. Increases Magic Attack.","etypeId":3,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":133,"name":"Witch's Hat","note":"","params":[0,0,0,2,8,0,2,0],"price":50},
+{"id":6,"atypeId":3,"description":"Cold's cape. Increases Critical Rate by 50%.","etypeId":4,"traits":[{"code":22,"dataId":2,"value":0.5}],"iconIndex":152,"name":"Cold's Cape","note":"","params":[0,0,0,5,0,0,20,0],"price":0},
+{"id":7,"atypeId":3,"description":"I have no idea what this is.","etypeId":5,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":145,"name":"Croak Ring","note":"","params":[0,0,3,1,3,1,3,3],"price":500},
+{"id":8,"atypeId":0,"description":"","etypeId":2,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":0,"name":"","note":"","params":[0,0,0,0,0,0,0,0],"price":0}
+]
