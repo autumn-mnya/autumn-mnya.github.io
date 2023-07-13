@@ -1,4 +1,4 @@
-# itsautumn3.github.io
+# autumn-mnya.github.io
 My website I guess, it isn't going to be the most stylish thing ever :)
 
 # About
