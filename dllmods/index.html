@@ -121,7 +121,7 @@
                     const sourceCodeLink = `<a href="${latestRelease.html_url}" style="color: lightpink">Source Code</a>`;
                     downloadLinks += `Latest Release: ${tagName} (${sourceCodeLink})<br>`;
                     latestRelease.assets.forEach(asset => {
-                        const downloadLink = `<a href="${asset.browser_download_url}" style="color: lightpink">${asset.name}</a>`;
+                        const downloadLink = `<a href="${asset.browser_download_url}" style="color: cyan">${asset.name}</a>`;
                         downloadLinks += `${downloadLink}<br>`;
                     });
                 }
