@@ -107,7 +107,7 @@
                 return data;
             } catch (error) {
                 console.error(error);
-                return [];
+                return null;
             }
         }
 
@@ -115,15 +115,21 @@
             for (const mod in repos) {
                 const releases = await fetchReleases(repos[mod]);
                 let downloadLinks = "";
-                if (releases.length > 0) {
-                    const latestRelease = releases[0];
-                    const tagName = latestRelease.tag_name;
-                    const sourceCodeLink = `<a href="${latestRelease.tarball_url}" style="color: yellow">Source Code</a>`;
-                    downloadLinks += `Latest Release: ${tagName} (${sourceCodeLink})<br>`;
-                    latestRelease.assets.forEach(asset => {
-                        const downloadLink = `<a href="${asset.browser_download_url}" style="color: cyan">${asset.name}</a>`;
-                        downloadLinks += `${downloadLink}<br>`;
-                    });
+                if (releases) {
+                    if (releases.length > 0) {
+                        const latestRelease = releases[0];
+                        const tagName = latestRelease.tag_name;
+                        const sourceCodeLink = `<a href="${latestRelease.tarball_url}" style="color: yellow">Source Code</a>`;
+                        downloadLinks += `Latest Release: ${tagName} (${sourceCodeLink})<br>`;
+                        latestRelease.assets.forEach(asset => {
+                            const downloadLink = `<a href="${asset.browser_download_url}" style="color: cyan">${asset.name}</a>`;
+                            downloadLinks += `${downloadLink}<br>`;
+                        });
+                    } else {
+                        downloadLinks += `<a href="https://github.com/${repos[mod]}" style="color: red">GitHub Repository</a><br>`;
+                    }
+                } else {
+                    downloadLinks += `<a href="https://github.com/${repos[mod]}" style="color: red">GitHub Repository</a><br>`;
                 }
                 document.getElementById(mod).innerHTML = downloadLinks;
             }
