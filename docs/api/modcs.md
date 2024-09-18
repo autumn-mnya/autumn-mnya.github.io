@@ -66,7 +66,7 @@ This rect will usually equal to this:
 During the credits sequence the rect's `left` value will equal to 160.
 
 !!! Note
-	The main difference between ModCS.GetGameRect() and ModCS.GetFullRect() is how both values are used in the original game itself. The full Rect is often the default view limitng value for drawing a bitmap, while the game Rect is the view limiting value for game related objects (NPCs, player, map tiles, etc.). You can use these Rects with [ModCS.Rect.PutEx()](/api/drawing/rect/#modcsrectputex)
+	The main difference between ModCS.GetGameRect() and ModCS.GetFullRect() is how both values are used in the original game itself. The full Rect is often the default view limiting value for drawing a bitmap, while the game Rect is the view limiting value for game related objects (NPCs, player, map tiles, etc.). You can use these Rects with [ModCS.Rect.PutEx()](/api/drawing/rect/#modcsrectputex)
 
 ## ModCS.GetDataPath()
 
