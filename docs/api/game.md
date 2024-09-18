@@ -94,5 +94,14 @@ This function is called every frame after everything is drawn in the main game l
 	end
 	```
 
-!!! Note
-	ModCS.Game.Draw() will draw over **everything**. If you're planning on using it for custom HUD it's recommended to draw to the custom HUD [Surface](/api/drawing/surface/) instead.
+There are also other draw functions for other specific situations. They are listed here:
+
+```lua
+ModCS.Game.DrawBelowPlayer()
+ModCS.Game.DrawAbovePlayer()
+ModCS.Game.DrawBelowFade()
+ModCS.Game.DrawAboveFade()
+ModCS.Game.DrawBelowTextBox()
+ModCS.Game.DrawAboveTextBox()
+ModCS.Game.DrawHUD() -- Only draws when the hud is supposed to be drawn as well
+```

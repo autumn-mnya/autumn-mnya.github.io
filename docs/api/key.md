@@ -76,7 +76,7 @@ Run game input functions. Always gets run in the main gameplay loop, opening, an
 ModCS.Key.KeyDown(kcode, kchar, krepeat)
 ```
 
-Run code when the `kcode` (Win32 Keyboard Keycode) is pressed, with `kchar` being the character (if there is one). `krepeat` is true if its a repeated key press, holding down the key for a decent amount of time.
+Run code when the `kcode` ([Win32 Keyboard Keycode](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)) is pressed, with `kchar` being the character (if there is one). `krepeat` is true if its a repeated key press, holding down the key for a decent amount of time.
 
 ## ModCS.Key.KeyUp()
 
