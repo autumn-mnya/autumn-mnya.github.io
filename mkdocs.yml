@@ -74,7 +74,6 @@ nav:
     - 'api/profile.md'
     - 'api/mod.md'
     - 'api/modloader.md'
-    - 'api/deprecated.md'
   - 'options.md'
 
 extra_javascript:
