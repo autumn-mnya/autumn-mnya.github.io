@@ -1,0 +1,8 @@
+.admonition.example {
+    background-color: #E3DCEF;
+    border-color: #E1D3ED;
+}
+
+.admonition.example > .admonition-title {
+  background: #A06ADD;
+}
