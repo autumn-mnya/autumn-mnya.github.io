@@ -1,0 +1,110 @@
+site_name: ModCS Documentation
+
+plugins:
+  - search
+  
+theme:
+  name: material
+  features:
+    - toc.integrate
+    - navigation.tabs
+  palette:
+    - scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+  logo: assets/logo.png
+
+nav:
+  - 'Home':
+    - 'index.md'
+  - 'Getting Started':
+    - '0 - Introduction':
+      - 'guide/intro.md'
+      - 'guide/intro/install.md'
+      - 'guide/intro/editors.md'
+    - '1 - Basics':
+      - 'guide/basics.md'
+      - 'guide/basics/ui.md'
+      - 'guide/basics/stage.md'
+      - 'guide/basics/tiles.md'
+      - 'guide/basics/bgs.md'
+      - 'guide/basics/npc.md'
+      - 'guide/basics/npctbl.md'
+    - '2 - Text Scripting':
+      - 'guide/tsc.md'
+      - 'guide/tsc/box.md'
+      - 'guide/tsc/door.md'
+      - 'guide/tsc/chest.md'
+    - '3 - Lua Scripting':
+      - 'guide/lua.md'
+      - 'guide/lua/basic.md'
+      - 'guide/lua/drawing.md'
+      - 'guide/lua/npc.md'
+  - 'API Reference':
+    - 'api/modcs.md'
+    - 'api/game.md'
+    - 'api/key.md'
+    - 'Drawing':
+      - 'api/drawing/surface.md'
+      - 'api/drawing/rect.md'
+      - 'api/drawing/color.md'
+    - 'api/map.md' 
+    - 'api/stage.md'
+    - 'api/tsc.md'
+    - 'Flags':
+      - 'api/flags/flag.md'
+      - 'api/flags/skipflag.md'
+    - 'Sound':
+      - 'api/sound/music.md'
+      - 'api/sound/sound.md'
+    - 'api/camera.md'
+    - 'Inventory':
+      - 'api/inventory/arms.md'
+      - 'api/inventory/item.md'
+    - 'Game Objects':
+      - 'api/objects/pixel.md'
+      - 'api/objects/direction.md'
+      - 'api/objects/range.md'
+      - 'Player':
+        - 'api/objects/player.md'
+        - 'api/objects/player/collision.md'
+        - 'api/objects/player/equip.md'
+      - 'NPCs':
+        - 'api/objects/npc.md'
+        - 'api/objects/npc/functions.md'
+        - 'api/objects/npc/collision.md'
+        - 'api/objects/npc/id.md'
+        - 'api/objects/npc/bits.md'
+      - 'Bullets':
+        - 'api/objects/bullet.md'
+        - 'api/objects/bullet/functions.md'
+        - 'api/objects/bullet/collision.md'
+        - 'api/objects/bullet/id.md'
+        - 'api/objects/bullet/bits.md'
+      - 'Carets':
+        - 'api/objects/caret.md'
+        - 'api/objects/caret/functions.md'
+        - 'api/objects/caret/id.md'
+    - 'api/profile.md'
+    - 'api/mod.md'
+    - 'api/modloader.md'
+    - 'api/deprecated.md'
+  - 'options.md'
+
+extra_javascript:
+  - assets/dontSaveScroll.js
+  
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.details
