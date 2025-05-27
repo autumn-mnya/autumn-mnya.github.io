@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bullet Table Editor</title>
+</head>
+<body>
+    <h2>Bullet Table Editor</h2>
+    <input type="file" id="fileInput">
+    <button onclick="saveFile()">Save</button>
+    <button onclick="addEntry()">Add Entry</button>
+    <table border="1" id="bulletTable"></table>
+
+    <script>
+        let bullets = [];
+        let entrySize = 42; // Each BULLET_TABLE entry is 42 bytes
+        let fileBuffer;
+
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            let file = event.target.files[0];
+            if (!file) return;
+
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                fileBuffer = e.target.result;
+                let dataView = new DataView(fileBuffer);
+                let entryCount = Math.floor(fileBuffer.byteLength / entrySize);
+
+                // Check for misalignment
+                if (fileBuffer.byteLength % entrySize !== 0) {
+                    alert("Warning: File size is not a multiple of 42 bytes. Some data may be incorrect.");
+                }
+
+                bullets = [];
+                let offset = 0;
+
+                for (let i = 0; i < entryCount; i++) {
+                    bullets.push({
+                        damage: dataView.getInt8(offset),
+                        life: dataView.getInt8(offset + 1),
+                        life_count: dataView.getInt32(offset + 2, true),
+                        bbits: dataView.getInt32(offset + 6, true),
+                        enemyXL: dataView.getInt32(offset + 10, true),
+                        enemyYL: dataView.getInt32(offset + 14, true),
+                        blockXL: dataView.getInt32(offset + 18, true),
+                        blockYL: dataView.getInt32(offset + 22, true),
+                        view: [
+                            dataView.getInt32(offset + 26, true),
+                            dataView.getInt32(offset + 30, true),
+                            dataView.getInt32(offset + 34, true),
+                            dataView.getInt32(offset + 38, true),
+                        ]
+                    });
+                    offset += entrySize;
+                }
+
+                displayTable();
+            };
+            reader.readAsArrayBuffer(file);
+        });
+
+        function displayTable() {
+            let table = document.getElementById("bulletTable");
+            table.innerHTML = "<tr><th>Damage</th><th>Life</th><th>Life Count</th><th>BBits</th><th>EnemyXL</th><th>EnemyYL</th><th>BlockXL</th><th>BlockYL</th><th>View Left</th><th>View Top</th><th>View Right</th><th>View Bottom</th><th>Action</th></tr>";
+
+            bullets.forEach((bullet, index) => {
+                let row = table.insertRow();
+                Object.keys(bullet).forEach((key, i) => {
+                    if (key === "view") {
+                        bullet[key].forEach((val, j) => {
+                            let cell = row.insertCell();
+                            let input = document.createElement("input");
+                            input.type = "number";
+                            input.value = val;
+                            input.onchange = (e) => bullets[index][key][j] = parseInt(e.target.value, 10);
+                            cell.appendChild(input);
+                        });
+                    } else {
+                        let cell = row.insertCell();
+                        let input = document.createElement("input");
+                        input.type = "number";
+                        input.value = bullet[key];
+                        input.onchange = (e) => bullets[index][key] = parseInt(e.target.value, 10);
+                        cell.appendChild(input);
+                    }
+                });
+
+                // Add remove button
+                let actionCell = row.insertCell();
+                let removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.onclick = () => {
+                    bullets.splice(index, 1);
+                    displayTable();
+                };
+                actionCell.appendChild(removeButton);
+            });
+        }
+
+        function addEntry() {
+            bullets.push({
+                damage: 0,
+                life: 0,
+                life_count: 0,
+                bbits: 0,
+                enemyXL: 0,
+                enemyYL: 0,
+                blockXL: 0,
+                blockYL: 0,
+                view: [0, 0, 0, 0]
+            });
+            displayTable();
+        }
+
+        function saveFile() {
+            let buffer = new ArrayBuffer(bullets.length * entrySize);
+            let dataView = new DataView(buffer);
+            let offset = 0;
+
+            bullets.forEach(bullet => {
+                dataView.setInt8(offset, bullet.damage);
+                dataView.setInt8(offset + 1, bullet.life);
+                dataView.setInt32(offset + 2, bullet.life_count, true);
+                dataView.setInt32(offset + 6, bullet.bbits, true);
+                dataView.setInt32(offset + 10, bullet.enemyXL, true);
+                dataView.setInt32(offset + 14, bullet.enemyYL, true);
+                dataView.setInt32(offset + 18, bullet.blockXL, true);
+                dataView.setInt32(offset + 22, bullet.blockYL, true);
+                dataView.setInt32(offset + 26, bullet.view[0], true);
+                dataView.setInt32(offset + 30, bullet.view[1], true);
+                dataView.setInt32(offset + 34, bullet.view[2], true);
+                dataView.setInt32(offset + 38, bullet.view[3], true);
+                offset += entrySize;
+            });
+
+            let blob = new Blob([buffer], { type: "application/octet-stream" });
+            let a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "bullet.tbl";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+<p>Note: Generated by ChatGPT cause lazy, not very polished.</p>
+</body>
+</html>
